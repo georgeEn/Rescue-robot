@@ -1,5 +1,0 @@
-In this scenario the most suitable architecture would be the component based architecture because it offers many advantages
-- Each part of the robot will be considered as unique, offering different interfaces, coding languages (if required), functionnality and thus offer ease in maintenance
-- There is collaboration between objects
-   In our case as it's implemented in collaborative way, the component manager will allow the component loader to launch each component dpending on if the other components
-   are already working or not, hence it's already important to think about concurrency and thus threads.
