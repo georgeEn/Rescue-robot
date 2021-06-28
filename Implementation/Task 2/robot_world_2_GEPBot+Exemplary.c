@@ -61,7 +61,7 @@ int move(char *world)
 
     if(abs(WE_distance) <= abs(NS_distance))
     {
-        if(NS_distance >= 0)
+         if(NS_distance >= 0)
         {
            if ( world [robot_index-(width+1)] == 'O' && driving_mode == 0 && coming_from=='O' )
            {return 1;}
@@ -71,13 +71,26 @@ int move(char *world)
 
                 return 5;
 
-                if (world [robot_index-(width+1)] == '~' && driving_mode == 1 && coming_from=='~')
+
+
+
+            }
+            else if ( world [robot_index-(width+1)] == 'O' && driving_mode == 1 && coming_from=='~')
                 {
+
                     return 5;
 
                 }
+                else
+                {
 
-            }
+                    return 1;
+
+                }
+
+
+
+
 
 
 
@@ -111,6 +124,7 @@ int move(char *world)
 
                 }
             }
+            else {return 1;}
         }
 
         else
@@ -303,7 +317,7 @@ int main()
 
     // world
     char world[200];
-    memcpy(world, world, sizeof(world5));
+    memcpy(world, world1, sizeof(world1));
 
     // Initialize target and robot positions
     // Assumes only one target, one robot
