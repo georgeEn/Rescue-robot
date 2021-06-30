@@ -317,7 +317,7 @@ int main()
 
     // world
     char world[200];
-    memcpy(world, world1, sizeof(world1));
+    memcpy(world, world6, sizeof(world6));
 
     // Initialize target and robot positions
     // Assumes only one target, one robot
