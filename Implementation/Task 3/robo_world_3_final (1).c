@@ -88,7 +88,7 @@ int move(char *world)
     int NS_distance= robot_index_NS_cord - target_index_NS_cord;
     int WE_distance= robot_index_WE_cord - target_index_WE_cord;
 
-    printf (" NS distance= %d, WS distance = %d \n", NS_distance, WE_distance);
+    printf (" NS distance= %d, WE distance = %d \n", NS_distance, WE_distance);
 
     if (rescued < 1)
     {
@@ -119,39 +119,141 @@ int move(char *world)
 
                 }
         }
-        else
+       else
         {
 
-            return 3; // south
+            if (( world [robot_index+(width+1)] == 'O') && (driving_mode == 0) && (coming_from=='O') )
+
+           {printf("south\n");
+               return 3;} // South
+
+           else if ( world [robot_index+(width+1)] == '~' && driving_mode == 0 && (coming_from=='O' || coming_from=='X'))
+            {
+                return 5;
+            }
+            else if ( world [robot_index+(width+1)] == 'O' && driving_mode == 1 && coming_from=='~')
+                {
+
+                    return 5;
+
+                }
+
+            else if ((world [robot_index+(width+1)] == '*')  )
+            {
+                if(WE_distance >= 0)
+                {
+                    if((world[robot_index+1] != '*')  )
+                    {printf( "hereeeee\n"); return 2;} //eest
+                    else {printf("9043964 \n");}
+                }
+                else
+                {
+                    if ((world[robot_index-1] != '*')  )
+                    {return 4;} // wast
+
+                     else { printf("**** \n");}
+
+                }
+
+
+            }
+            else
+                {
+                    printf ("Eukajshf\n");
+                    return 3;
+
+                }
         }
     }
     else
     {
         if(WE_distance >= 0)
         {
-            if (world [robot_index-1] != '#')
+            if ((world [robot_index-1] != '#')  )
             {return 4;} // west
-            else if (world [robot_index-1] == '#')
+            else if ((world [robot_index-1] == '#')  )
             {
                 if(NS_distance >= 0)
                 {
-                if(world[robot_index-(width+1)] != '#')
+                if((world[robot_index-(width+1)] != '#')  )
                     {return 1;}
+                    else {printf("9043964 \n");}
+                }
                 else
                 {
-                    if (world[robot_index+(width+1)] != '#')
+                    if ((world[robot_index+(width+1)] != '#')  )
                     {return 3;}
-                }
+                    else { printf("**** \n");}
 
                 }
+
+
+            }
+            else if ((world [robot_index-1] == '*')  )
+            {
+                if(NS_distance >= 0)
+                {
+                if((world[robot_index-(width+1)] != '*')  )
+                    {return 1;}
+                    else {printf("9043964 \n");}
+                }
+                else
+                {
+                    if ((world[robot_index+(width+1)] != '*')  )
+                    {return 3;}
+                    else { printf("**** \n");}
+
+                }
+
+
             }
             else {return 1;}
         }
 
+
         else
         {
 
-            return 2; //east
+            if ((world [robot_index+1] != '#') )
+            {return 2;} // east
+            else if ((world [robot_index-1] == '#') )
+            {
+                if(NS_distance >= 0)
+                {
+                if((world[robot_index-(width+1)] != '#') )
+                    {return 1;}
+                    else {printf("9043964(3)\n");}
+                }
+                else
+                {
+                    if ((world[robot_index+(width+1)] != '#') )
+                    {return 3;}
+                    else { printf("****(3)\n");}
+
+                }
+
+
+            }
+
+            else if ((world [robot_index-1] == '*') )
+            {
+                if(NS_distance >= 0)
+                {
+                if((world[robot_index-(width+1)] != '*') )
+                    {return 1;}
+                    else {printf("9043964(3)\n");}
+                }
+                else
+                {
+                    if ((world[robot_index+(width+1)] != '*') )
+                    {return 3;}
+                    else { printf("****(3)\n");}
+
+                }
+
+
+            }
+            else {return 1;}
         }
     }
     }
@@ -227,29 +329,52 @@ int move(char *world)
     {
         if(WE_distance >= 0)
         {
-            if (world [robot_index-1] != '#')
+            if ((world [robot_index-1] != '#') )
             {return 4;} // west
-            else if (world [robot_index-1] == '#')
+            else if ((world [robot_index-1] == '#') )
             {
                 if(NS_distance >= 0)
                 {
-                if(world[robot_index-(width+1)] != '#')
+                if((world[robot_index-(width+1)] != '#') )
                     {return 1;}
+                    else {printf("9043964(3)\n");}
+                }
                 else
                 {
-                    if (world[robot_index+(width+1)] != '#')
+                    if ((world[robot_index+(width+1)] != '#') )
                     {return 3;}
-                }
+                    else { printf("****(3)\n");}
 
                 }
+
+
             }
             else {return 1;}
         }
 
         else
         {
+          if ((world [robot_index+1] != '#') )
+            {return 2;} // east
+            else if ((world [robot_index-1] == '#') )
+            {
+                if(NS_distance >= 0)
+                {
+                if((world[robot_index-(width+1)] != '#') )
+                    {return 1;}
+                    else {printf("9043964(3)\n");}
+                }
+                else
+                {
+                    if ((world[robot_index+(width+1)] != '#') )
+                    {return 3;}
+                    else { printf("****(3)\n");}
 
-            return 2; //east
+                }
+
+
+            }
+            else {return 1;}
         }
     }
 
@@ -459,7 +584,7 @@ int main() {
 
     // Set the world to use
     char world[200];
-    memcpy(world, world6, sizeof(world6));
+    memcpy(world, world1, sizeof(world1));
 
     // Initialize target and robot positions
     // Assumes only one target, one robot
