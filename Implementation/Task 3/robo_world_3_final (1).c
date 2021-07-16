@@ -260,7 +260,7 @@ int move(char *world)
 
     else if ( rescued >=1)
     {
-        //printf (" DHUKSE !");
+
          for (int i=0; i<200; ++i){
         if (world[i]=='X')
         {
@@ -382,8 +382,6 @@ int move(char *world)
     else {return 1;}
 
 }
-
-
 
 
 // Return target index
@@ -584,7 +582,7 @@ int main() {
 
     // Set the world to use
     char world[200];
-    memcpy(world, world1, sizeof(world1));
+    memcpy(world, world8, sizeof(world8));
 
     // Initialize target and robot positions
     // Assumes only one target, one robot

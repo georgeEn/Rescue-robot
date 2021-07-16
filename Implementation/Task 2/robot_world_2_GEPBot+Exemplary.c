@@ -61,12 +61,14 @@ int move(char *world)
 
     if(abs(WE_distance) <= abs(NS_distance))
     {
-         if(NS_distance >= 0)
+        if(NS_distance >= 0)
         {
-           if ( world [robot_index-(width+1)] == 'O' && driving_mode == 0 && coming_from=='O' )
-           {return 1;}
+            if ( world [robot_index-(width+1)] == 'O' && driving_mode == 0 && coming_from=='O' )
+            {
+                return 1;
+            }
 
-           else if ( world [robot_index-(width+1)] == '~' && driving_mode == 0 && coming_from=='O')
+            else if ( world [robot_index-(width+1)] == '~' && driving_mode == 0 && coming_from=='O')
             {
 
                 return 5;
@@ -76,17 +78,17 @@ int move(char *world)
 
             }
             else if ( world [robot_index-(width+1)] == 'O' && driving_mode == 1 && coming_from=='~')
-                {
+            {
 
-                    return 5;
+                return 5;
 
-                }
-                else
-                {
+            }
+            else
+            {
 
-                    return 1;
+                return 1;
 
-                }
+            }
 
 
 
@@ -109,22 +111,31 @@ int move(char *world)
         if(WE_distance >= 0)
         {
             if (world [robot_index-1] != '#')
-            {return 4;} // west
+            {
+                return 4;   // west
+            }
             else if (world [robot_index-1] == '#')
             {
                 if(NS_distance >= 0)
                 {
-                if(world[robot_index-(width+1)] != '#')
-                    {return 1;}
-                else
-                {
-                    if (world[robot_index+(width+1)] != '#')
-                    {return 3;}
-                }
+                    if(world[robot_index-(width+1)] != '#')
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        if (world[robot_index+(width+1)] != '#')
+                        {
+                            return 3;
+                        }
+                    }
 
                 }
             }
-            else {return 1;}
+            else
+            {
+                return 1;
+            }
         }
 
         else
